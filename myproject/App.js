@@ -1,30 +1,42 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default function App() {
   const [name, setName] = useState('John Doe');
-  const [person, setPerson] = useState({ name: 'Raghav', age: 45 });
+  const [age, setAge] = useState('45');
 
-  const clickHandler = () => {
-    setName('Edward Snowden');
-    setPerson({ name: 'Raghav S.', age: 21 });
-  };
+  // const clickHandler = () => {
+  //   setName('Edward Snowden');
+  //   setAge('35');
+  // };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text>My name is {name}</Text>
+        <Text>Name: {name}</Text>
+        <Text>Age: {age}</Text>
       </View>
       <View style={styles.body}>
-        <Text>
-          His name is {person.name} and his age is {person.age}
-        </Text>
+        <Text>Enter Name:</Text>
+        <TextInput
+          multiline
+          style={styles.input}
+          placeholder='Mario'
+          onChangeText={val => setName(val)}
+        />
+        <Text>Enter Age:</Text>
+        <TextInput
+          keyboardType='numeric'
+          style={styles.input}
+          placeholder='20'
+          onChangeText={val => setAge(val)}
+        />
       </View>
-      <View style={styles.buttonContainer}>
+      {/* <View style={styles.buttonContainer}>
         <Button title='Update State' onPress={clickHandler} />
-        {/*I placed button inside a view so that I can add styles to the view as we can't add style
+      </View> */}
+      {/* I placed button inside a view so that I can add styles to the view as we can't add style
          properties to the button, react native doesn't allows that.. */}
-      </View>
     </View>
   );
 }
@@ -45,7 +57,14 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: 25
   },
-  buttonContainer: {
-    marginTop: 5
+  // buttonContainer: {
+  //   marginTop: 5
+  // }
+  input: {
+    borderWidth: 1,
+    borderColor: '#777',
+    padding: 8,
+    margin: 10,
+    width: 200
   }
 });
