@@ -1,42 +1,27 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 export default function App() {
-  const [name, setName] = useState('John Doe');
-  const [age, setAge] = useState('45');
-
-  // const clickHandler = () => {
-  //   setName('Edward Snowden');
-  //   setAge('35');
-  // };
+  const [people, setPeople] = useState([
+    { name: 'badri', key: '1' },
+    { name: 'raghav', key: '2' },
+    { name: 'rishabh', key: '3' },
+    { name: 'rakshit', key: '4' },
+    { name: 'ujjwal', key: '5' },
+    { name: 'jassi', key: '6' },
+    { name: 'raman', key: '7' },
+    { name: 'yuvek', key: '8' }
+  ]);
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text>Name: {name}</Text>
-        <Text>Age: {age}</Text>
-      </View>
-      <View style={styles.body}>
-        <Text>Enter Name:</Text>
-        <TextInput
-          multiline
-          style={styles.input}
-          placeholder='Mario'
-          onChangeText={val => setName(val)}
-        />
-        <Text>Enter Age:</Text>
-        <TextInput
-          keyboardType='numeric'
-          style={styles.input}
-          placeholder='20'
-          onChangeText={val => setAge(val)}
-        />
-      </View>
-      {/* <View style={styles.buttonContainer}>
-        <Button title='Update State' onPress={clickHandler} />
-      </View> */}
-      {/* I placed button inside a view so that I can add styles to the view as we can't add style
-         properties to the button, react native doesn't allows that.. */}
+      {people.map(item => {
+        return (
+          <View key={item.key}>
+            <Text style={styles.item}>{item.name}</Text>
+          </View>
+        );
+      })}
     </View>
   );
 }
@@ -45,26 +30,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+    paddingTop: 40,
+    paddingHorizontal: 20
   },
-  header: {
+  item: {
+    marginTop: 24,
+    padding: 30,
     backgroundColor: 'pink',
-    padding: 20
-  },
-  body: {
-    backgroundColor: 'lightgreen',
-    padding: 20,
-    margin: 25
-  },
-  // buttonContainer: {
-  //   marginTop: 5
-  // }
-  input: {
-    borderWidth: 1,
-    borderColor: '#777',
-    padding: 8,
-    margin: 10,
-    width: 200
+    textAlign: 'center',
+    fontSize: 24
   }
 });
