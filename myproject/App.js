@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity
+} from 'react-native';
 
 export default function App() {
   const [people, setPeople] = useState([
@@ -13,6 +19,10 @@ export default function App() {
     { name: 'yuvek', id: '8' }
   ]);
 
+  const pressHandler = id => {
+    console.log(id);
+  };
+
   // key is needed for flatlist and if we don't have that in data then we can use keyextractor method...
   // And in that we will tell which property of object is going to be used as key .....
   return (
@@ -23,7 +33,11 @@ export default function App() {
         data={people}
         renderItem={(
           { item } // The item here is destructured variable and it is the indiviaual item in the people array eg-- { name: 'badri', key: '1' }
-        ) => <Text style={styles.item}>{item.name}</Text>}
+        ) => (
+          <TouchableOpacity onPress={() => pressHandler(item.id)}>
+            <Text style={styles.item}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
       />
     </View>
   );
