@@ -20,7 +20,10 @@ export default function App() {
   ]);
 
   const pressHandler = id => {
-    console.log(id);
+    // console.log(id);
+    setPeople(prevPeople => {
+      return prevPeople.filter(person => person.id != id);
+    });
   };
 
   // key is needed for flatlist and if we don't have that in data then we can use keyextractor method...
