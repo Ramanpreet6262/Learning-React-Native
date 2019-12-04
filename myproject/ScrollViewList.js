@@ -1,5 +1,9 @@
+/* This is a implementation of a scrolling list using Scroll View 
+And the other way is by using Flatlist and it automatically comes wth the ability to scroll so no need to
+use ScrollView in that */
+
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 export default function App() {
   const [people, setPeople] = useState([
@@ -15,12 +19,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={people}
-        renderItem={(
-          { item } // The item here is destructured variable and it is the indiviaual item in the people array eg-- { name: 'badri', key: '1' }
-        ) => <Text style={styles.item}>{item.name}</Text>}
-      />
+      <ScrollView>
+        {people.map(item => (
+          <View key={item.key}>
+            <Text style={styles.item}>{item.name}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
